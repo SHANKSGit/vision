@@ -5,7 +5,6 @@ import com.student.vision.model.BaseQuery;
 import com.student.vision.model.BaseResp;
 import com.student.vision.model.Student;
 import com.student.vision.service.StudentService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +51,7 @@ public class StudentController {
 
     @DeleteMapping("/delete")
     @ResponseBody
-    public BaseResp delete(@Param("id") Long id){
+    public BaseResp delete(@RequestParam("id") Long id){
 
         boolean flag=studentService.delete(id);
         if(!flag){

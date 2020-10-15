@@ -9,8 +9,8 @@
         <result column="l_eye" jdbcType="VARCHAR" property="lEye" />
         <result column="r_eye_ref" jdbcType="VARCHAR" property="rEyeRef" />
         <result column="l_eye_ref" jdbcType="VARCHAR" property="lEyeRef" />
-        <result column="create_time" jdbcType="DATETIME" property="createTime" />
-        <result column="update_time" jdbcType="DATETIME" property="updateTime" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+        <result column="update_time" jdbcType="DATE" property="updateTime" />
     </resultMap>
 
     <select id="search" resultMap="BaseResultMap" >

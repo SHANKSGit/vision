@@ -22,17 +22,17 @@ public class VisionServiceImpl implements VisionService {
 
     @Override
     public boolean insert(Vision vision) {
-        return false;
+        return visionDao.insert(vision)>0;
     }
 
     @Override
     public boolean update(Vision vision) {
-        return false;
+        return visionDao.update(vision)==1;
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return visionDao.delete(id)==1;
     }
 
     @Override

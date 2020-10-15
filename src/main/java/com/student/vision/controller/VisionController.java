@@ -1,14 +1,8 @@
 package com.student.vision.controller;
 
-import com.github.pagehelper.Page;
-import com.student.vision.model.BaseQuery;
 import com.student.vision.model.BaseResp;
-import com.student.vision.model.Student;
 import com.student.vision.model.Vision;
-import com.student.vision.service.StudentService;
 import com.student.vision.service.VisionService;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +19,7 @@ public class VisionController {
     public BaseResp<Vision> insert(@RequestBody Vision vision){
         boolean flag;
         if(vision.getId()!=null){
-            flag=visionService.update(vision);
+            flag = visionService.update(vision);
         }else {
             flag = visionService.insert(vision);
         }

@@ -4,9 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
-@Getter
-@Setter
 public class Vision {
 
     private Long id;
@@ -33,5 +32,70 @@ public class Vision {
     @NotNull(message = "左眼屈光不能为空")
     private String lEyeRef;
 
+    private Date createTime;
+    private Date updateTime;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getsId() {
+        return sId;
+    }
+
+    public void setsId(Long sId) {
+        this.sId = sId;
+    }
+
+    public String getrEye() {
+        return rEye;
+    }
+
+    public void setrEye(String rEye) {
+        this.rEye = rEye;
+    }
+
+    public String getlEye() {
+        return lEye;
+    }
+
+    public void setlEye(String lEye) {
+        this.lEye = lEye;
+    }
+
+    public String getrEyeRef() {
+        return rEyeRef;
+    }
+
+    public void setrEyeRef(String rEyeRef) {
+        this.rEyeRef = rEyeRef;
+    }
+
+    public String getlEyeRef() {
+        return lEyeRef;
+    }
+
+    public void setlEyeRef(String lEyeRef) {
+        this.lEyeRef = lEyeRef;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

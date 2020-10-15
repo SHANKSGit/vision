@@ -5,12 +5,12 @@
     <resultMap id="BaseResultMap" type="com.student.vision.model.Vision">
         <result column="id" jdbcType="BIGINT" property="id" />
         <result column="s_id" jdbcType="BIGINT" property="sId" />
-        <result column="r_eye" jdbcType="FLOAT" property="rEye" />
-        <result column="l_eye" jdbcType="FLOAT" property="lEye" />
-        <result column="r_eye_ref" jdbcType="FLOAT" property="rEyeRef" />
-        <result column="l_eye_ref" jdbcType="FLOAT" property="lEyeRef" />
-        <result column="create_time" jdbcType="FLOAT" property="createTime" />
-        <result column="update_time" jdbcType="FLOAT" property="updateTime" />
+        <result column="r_eye" jdbcType="VARCHAR" property="rEye" />
+        <result column="l_eye" jdbcType="VARCHAR" property="lEye" />
+        <result column="r_eye_ref" jdbcType="VARCHAR" property="rEyeRef" />
+        <result column="l_eye_ref" jdbcType="VARCHAR" property="lEyeRef" />
+        <result column="create_time" jdbcType="DATETIME" property="createTime" />
+        <result column="update_time" jdbcType="DATETIME" property="updateTime" />
     </resultMap>
 
     <select id="search" resultMap="BaseResultMap" >

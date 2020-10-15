@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.vision.dao.VisionDao">
+
+    <resultMap id="BaseResultMap" type="com.student.vision.model.Vision">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="s_id" jdbcType="BIGINT" property="sId" />
+        <result column="r_eye" jdbcType="FLOAT" property="rEye" />
+        <result column="l_eye" jdbcType="FLOAT" property="lEye" />
+        <result column="r_eye_ref" jdbcType="FLOAT" property="rEyeRef" />
+        <result column="l_eye_ref" jdbcType="FLOAT" property="lEyeRef" />
+        <result column="create_time" jdbcType="FLOAT" property="createTime" />
+        <result column="update_time" jdbcType="FLOAT" property="updateTime" />
+    </resultMap>
+
+    <select id="search" resultMap="BaseResultMap" >
+        select * from `vision` where s_id=#{sId}
+
+    </select>
+
+    <insert id="insert" parameterType="com.student.vision.model.Vision"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO vision (s_id,r_eye,l_eye,r_eye_ref,l_eye_ref)
+        VALUES(#{sId},#{rEye},#{lEye},#{rEyeRef},#{lEyeRef})
+    </insert>
+
+    <update id="update" parameterType="com.student.vision.model.Vision">
+        update vision
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="rEye != null">
+                r_eye = #{rEye},
+            </if>
+            <if test="lEye != null">
+                l_eye = #{lEye},
+            </if>
+            <if test="rEyeRef != null">
+                r_eye_ref = #{rEyeRef},
+            </if>
+            <if test="lEyeRef != null">
+                l_eye_ref = #{lEyeRef},
+            </if>
+             <if test="updateTime != null">
+                 update_time = #{updateTime},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" >
+        delete from vision where id = #{id}
+    </delete>
+
+</mapper>

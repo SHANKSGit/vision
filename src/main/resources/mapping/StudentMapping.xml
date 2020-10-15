@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.vision.dao.StudentDao">
+
+    <resultMap id="BaseResultMap" type="com.student.vision.model.Student">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="sex" jdbcType="TINYINT" property="sex" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="school" jdbcType="VARCHAR" property="school" />
+        <result column="s_group" jdbcType="TINYINT" property="sGroup" />
+        <result column="create_time" jdbcType="FLOAT" property="createTime" />
+        <result column="update_time" jdbcType="FLOAT" property="updateTime" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+    </resultMap>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="com.student.vision.model.Student">
+        select * from `student`
+        <where>
+            <if test='name != null and name !=""'>
+                name = #{name} or phone=#{name}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <insert id="insert" parameterType="com.student.vision.model.Student"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO student(`name`,sex,school,s_group,phone)
+        VALUES(#{name},#{sex},#{school},#{sGroup},#{phone})
+    </insert>
+
+    <update id="update" parameterType="com.student.vision.model.Student">
+        update student
+        <trim prefix="SET" suffixOverrides=",">
+
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="school != null">
+                school = #{school},
+            </if>
+            <if test="sGroup != null">
+                s_group = #{sGroup},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+             <if test="updateTime != null">
+                 update_time = #{updateTime},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" >
+        delete from student where id = #{id}
+    </delete>
+
+</mapper>

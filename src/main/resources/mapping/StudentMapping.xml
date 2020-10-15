@@ -9,8 +9,8 @@
         <result column="phone" jdbcType="VARCHAR" property="phone" />
         <result column="school" jdbcType="VARCHAR" property="school" />
         <result column="s_group" jdbcType="TINYINT" property="sGroup" />
-        <result column="create_time" jdbcType="FLOAT" property="createTime" />
-        <result column="update_time" jdbcType="FLOAT" property="updateTime" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+        <result column="update_time" jdbcType="DATE" property="updateTime" />
         <result column="status" jdbcType="TINYINT" property="status" />
     </resultMap>
 

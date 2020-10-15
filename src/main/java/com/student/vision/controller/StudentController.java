@@ -5,6 +5,7 @@ import com.student.vision.model.BaseQuery;
 import com.student.vision.model.BaseResp;
 import com.student.vision.model.Student;
 import com.student.vision.service.StudentService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class StudentController {
         return new BaseResp<>(students);
     }
 
-    @GetMapping("/searchById}")
+    @GetMapping("/searchById")
     @ResponseBody
     public BaseResp<Student> searchById(@RequestParam("id")Long id){
         Student students= studentService.searchById(id);
@@ -49,15 +50,15 @@ public class StudentController {
         return new BaseResp<>(student);
     }
 
-    @RequestMapping("/update")
+    @DeleteMapping("/delete")
     @ResponseBody
-    public BaseResp<Student> update(@RequestBody Student student){
+    public BaseResp delete(@Param("id") Long id){
 
-        boolean flag=studentService.update(student);
+        boolean flag=studentService.delete(id);
         if(!flag){
             return BaseResp.fail("更新失败");
         }
-        return new BaseResp<>(student);
+        return new BaseResp<>(null);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

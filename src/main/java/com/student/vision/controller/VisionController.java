@@ -1,11 +1,15 @@
 package com.student.vision.controller;
 
 import com.student.vision.model.BaseResp;
+import com.student.vision.model.Student;
 import com.student.vision.model.Vision;
 import com.student.vision.service.VisionService;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/vision")
@@ -30,22 +34,29 @@ public class VisionController {
         return new BaseResp<>(vision);
     }
 
-//    @RequestMapping("/update")
-//    @ResponseBody
-//    public BaseResp<Student> update(@RequestBody Student student){
-//
-//        boolean flag=studentService.update(student);
-//        if(!flag){
-//            return BaseResp.fail("更新失败");
-//        }
-//        return new BaseResp<>(student);
-//    }
-//
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public BaseResp handler(MethodArgumentNotValidException exception){
-//        String message =  exception.getBindingResult().getFieldError().getDefaultMessage();
-//        return BaseResp.fail(message);
-//    }
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public BaseResp delete(@Param("id") Long id){
+
+        boolean flag=visionService.delete(id);
+        if(!flag){
+            return BaseResp.fail("更新失败");
+        }
+        return new BaseResp<>(null);
+    }
+
+    @GetMapping("/searchBySId")
+    @ResponseBody
+    public BaseResp<Student> searchById(@RequestParam("sId")Long sId){
+        List<Vision> visions= visionService.search(sId);
+        return new BaseResp(visions);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public BaseResp handler(MethodArgumentNotValidException exception){
+        String message =  exception.getBindingResult().getFieldError().getDefaultMessage();
+        return BaseResp.fail(message);
+    }
 
 
 }

@@ -9,19 +9,22 @@
         <result column="l_eye" jdbcType="VARCHAR" property="lEye" />
         <result column="r_eye_ref" jdbcType="VARCHAR" property="rEyeRef" />
         <result column="l_eye_ref" jdbcType="VARCHAR" property="lEyeRef" />
-        <result column="create_time" jdbcType="DATE" property="createTime" />
-        <result column="update_time" jdbcType="DATE" property="updateTime" />
+        <result column="l_glass" jdbcType="VARCHAR" property="lGlass" />
+        <result column="r_glass" jdbcType="VARCHAR" property="rGlass" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     </resultMap>
 
     <select id="search" resultMap="BaseResultMap" >
-        select * from `vision` where s_id=#{sId}
+        select * from `vision` where s_id=#{sId} order by create_time desc
 
     </select>
 
     <insert id="insert" parameterType="com.student.vision.model.Vision"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        INSERT INTO vision (s_id,r_eye,l_eye,r_eye_ref,l_eye_ref)
-        VALUES(#{sId},#{rEye},#{lEye},#{rEyeRef},#{lEyeRef})
+        INSERT INTO vision (s_id,r_eye,l_eye,r_eye_ref,l_eye_ref,r_glass,l_glass,content)
+        VALUES(#{sId},#{rEye},#{lEye},#{rEyeRef},#{lEyeRef},#{rGlass},#{lGlass},#{content})
     </insert>
 
     <update id="update" parameterType="com.student.vision.model.Vision">
@@ -38,6 +41,15 @@
             </if>
             <if test="lEyeRef != null">
                 l_eye_ref = #{lEyeRef},
+            </if>
+            <if test="rGlass != null">
+                r_glass = #{rGlass},
+            </if>
+            <if test="lGlass != null">
+                l_glass = #{lGlass},
+            </if>
+              <if test="content != null">
+                  content = #{content},
             </if>
              <if test="updateTime != null">
                  update_time = #{updateTime},

@@ -9,6 +9,7 @@
         <result column="phone" jdbcType="VARCHAR" property="phone" />
         <result column="school" jdbcType="VARCHAR" property="school" />
         <result column="s_group" jdbcType="TINYINT" property="sGroup" />
+        <result column="s_class" jdbcType="TINYINT" property="sClass" />
         <result column="create_time" jdbcType="DATE" property="createTime" />
         <result column="update_time" jdbcType="DATE" property="updateTime" />
         <result column="status" jdbcType="TINYINT" property="status" />
@@ -23,12 +24,28 @@
         </where>
         order by create_time desc
     </select>
+    <select id="exist" resultType="java.lang.Integer">
+        select count(1) from `student` where name=#{name}
+        <if test='phone != null and phone !=""'>
+            and phone=#{phone}
+        </if>
+        <if test="school != null">
+            and school=#{school}
+        </if>
+
+    </select>
+
+    <select id="searchById" resultMap="BaseResultMap">
+        select * from `student` where id=#{id}
+    </select>
 
     <insert id="insert" parameterType="com.student.vision.model.Student"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        INSERT INTO student(`name`,sex,school,s_group,phone)
-        VALUES(#{name},#{sex},#{school},#{sGroup},#{phone})
+        INSERT INTO student(`name`,sex,school,s_group,s_class,phone)
+        VALUES(#{name},#{sex},#{school},#{sGroup},#{sClass},#{phone})
     </insert>
+
+
 
     <update id="update" parameterType="com.student.vision.model.Student">
         update student
@@ -46,8 +63,14 @@
             <if test="sGroup != null">
                 s_group = #{sGroup},
             </if>
+            <if test="sClass != null">
+                s_class = #{sClass},
+            </if>
             <if test="sex != null">
                 sex = #{sex},
+            </if>
+             <if test="status != null">
+                 status = #{status},
             </if>
              <if test="updateTime != null">
                  update_time = #{updateTime},

@@ -1,5 +1,7 @@
 package com.student.vision.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.student.vision.dao.VisionDao;
 import com.student.vision.model.Vision;
 import com.student.vision.service.VisionService;
@@ -32,7 +34,9 @@ public class VisionServiceImpl implements VisionService {
     }
 
     @Override
-    public List<Vision> search(Long sId) {
+    public Page<Vision> search(Long sId, int page, int pageSize) {
+        PageHelper.startPage(page, pageSize);
         return visionDao.search(sId);
     }
+
 }

@@ -10,6 +10,7 @@ public interface StudentDao {
 
     Long insert(Student student);
     int update(Student student);
+    int exist(Student student);
     int delete(@Param("id") Long id);
     Page<Student> search(Student student);
     Student searchById(Long id);

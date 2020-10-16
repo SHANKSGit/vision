@@ -10,5 +10,6 @@ public interface StudentService {
     boolean delete(Long id);
     Page<Student> search(Student student,int page,int pageSize);
     Student searchById(Long id);
+    boolean exist(Student student);
 
 }

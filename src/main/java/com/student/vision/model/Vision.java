@@ -14,26 +14,54 @@ public class Vision {
     /**
      * 右眼裸眼
      */
-    @NotNull(message = "右眼裸眼不能为空")
     private String rEye;
     /**
      * 左眼裸眼
      */
-    @NotNull(message = "左眼裸眼不能为空")
     private String lEye;
     /**
      * 右眼屈光
      */
-    @NotNull(message = "右眼屈光不能为空")
     private String rEyeRef;
     /**
      * 左眼屈光
      */
-    @NotNull(message = "左眼屈光不能为空")
     private String lEyeRef;
+
+    private String lGlass;
+    private String rGlass;
+
+    /**
+     * 其他
+     */
+    private String content;
 
     private Date createTime;
     private Date updateTime;
+
+    public String getlGlass() {
+        return lGlass;
+    }
+
+    public void setlGlass(String lGlass) {
+        this.lGlass = lGlass;
+    }
+
+    public String getrGlass() {
+        return rGlass;
+    }
+
+    public void setrGlass(String rGlass) {
+        this.rGlass = rGlass;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public Long getId() {
         return id;

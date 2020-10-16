@@ -23,13 +23,17 @@ public class VisionController {
         boolean flag;
         if(vision.getId()!=null){
             flag = visionService.update(vision);
+            if(!flag){
+                return BaseResp.fail("更新失败");
+            }
         }else {
             flag = visionService.insert(vision);
+            if(!flag){
+                return BaseResp.fail("新增失败");
+            }
         }
 
-        if(!flag){
-            return BaseResp.fail("添加失败");
-        }
+
         return new BaseResp<>(vision);
     }
 
@@ -39,15 +43,17 @@ public class VisionController {
 
         boolean flag=visionService.delete(id);
         if(!flag){
-            return BaseResp.fail("更新失败");
+            return BaseResp.fail("删除失败");
         }
         return new BaseResp<>(null);
     }
 
     @GetMapping("/searchBySId")
     @ResponseBody
-    public BaseResp<Student> searchById(@RequestParam("sId")Long sId){
-        List<Vision> visions= visionService.search(sId);
+    public BaseResp<Student> searchById(@RequestParam("sId")Long sId,
+                                        @RequestParam("page")int page,
+                                        @RequestParam("pageSize")int pageSize){
+        List<Vision> visions= visionService.search(sId,page,pageSize);
         return new BaseResp(visions);
     }
 

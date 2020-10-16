@@ -48,4 +48,9 @@ public class StudentServiceImpl implements StudentService {
     public Student searchById(Long id) {
         return studentDao.searchById(id);
     }
+
+    @Override
+    public boolean exist(Student student) {
+        return studentDao.exist(student)>0;
+    }
 }

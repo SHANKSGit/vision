@@ -21,10 +21,25 @@ public class DocUtil {
             out = new FileOutputStream("out_template.docx");
             template.write(out);
             out.flush();
-            out.close();
-            template.close();
+
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if(out!=null){
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(template!=null){
+                try {
+                    template.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
 
